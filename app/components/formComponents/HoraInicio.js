@@ -114,7 +114,7 @@ import { colors } from '../../styles/colors';
             color: 'white'
         },
         containerTimePicker:{
-            backgroundColor: 'rgba(255, 255, 255, 0.09)',
+            backgroundColor: 'rgba(78, 77, 76, 1)',
             alignItems: 'center',
             paddingTop: 20,
             marginVertical: 20,

@@ -111,7 +111,7 @@ import { colors } from '../../styles/colors';
             color: 'white'
         },
         containerDateTimePicker:{
-            backgroundColor: 'rgba(255, 255, 255, 0.09)',
+            backgroundColor: 'rgba(93, 92, 92, 1)',
             alignItems: 'center',
             paddingTop: 20,
             marginVertical: 20,

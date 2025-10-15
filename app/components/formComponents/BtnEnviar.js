@@ -1,10 +1,10 @@
-import { Alert, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
-export default function BtnEnviar(){
+export default function BtnEnviar({showModalForm, setShowModalForm}){
     return(
         <TouchableOpacity 
             style={styles.btnEnviar}
-            onPress={() => Alert.alert("Relatório enviado!")}
+            onPress={() => setShowModalForm(!showModalForm)}
         >
             <Text style={styles.btnEnviarTxt}>Enviar Relatório</Text>
         </TouchableOpacity>

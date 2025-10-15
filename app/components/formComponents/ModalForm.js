@@ -1,14 +1,6 @@
-import { useRouter } from 'expo-router';
 import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-export default function ModalBack({visible, setShowModal, saveData}){
-
-    const Router = useRouter();
-
-    function saveAndExit(){
-        saveData();
-        Router.back();
-    }
+export default function ModalForm({visible, setShowModal}){
 
     return(
         <Modal 
@@ -17,7 +9,7 @@ export default function ModalBack({visible, setShowModal, saveData}){
         >
             <View style={styles.modalContainer}>
                 <View style={styles.modalContainer2}>
-                    <Text style={styles.txtBack}>Deseja realmente voltar?</Text>
+                    <Text style={styles.txtBack}>Deseja enviar o formulario?</Text>
 
                     <View style={styles.containerBtns}>
                         <TouchableOpacity 
@@ -29,16 +21,8 @@ export default function ModalBack({visible, setShowModal, saveData}){
 
                         <TouchableOpacity 
                             style={styles.btn}
-                            onPress={() => Router.back()}
                         >
-                            <Text style={styles.txtBtn}>Sair sem salvar</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity 
-                            style={styles.btn}
-                            onPress={() => saveAndExit()}
-                        >
-                            <Text style={styles.txtBtn}>Salvar e sair</Text>
+                            <Text style={styles.txtBtn}>Enviar</Text>
                         </TouchableOpacity>
                     </View>
 
@@ -53,39 +37,41 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0, 0, 0, 0.85)',
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        width: '100%'
     },
     modalContainer2:{
         backgroundColor: 'white',
         height: 200,
         width: '90%',
         borderRadius: 15,
-        padding: 6
+        paddingBottom: 12
     },
     containerBtns:{
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between',
+        justifyContent: 'space-around',
         width: '100%',
-        borderRadius: 7
+        borderRadius: 7,
     },
     txtBack:{
         fontSize: 20,
         textAlign: 'center',
         height: '75%',
-        paddingTop: 25
+        paddingTop: 40
     },
     btn:{
-        height: 45,
-        width: '32%',
+        height: 50,
+        width: 130,
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: 'black',
         borderRadius: 7, 
+        // marginBottom: 10
     },
     txtBtn:{
         color: 'white',
         fontWeight: 'bold',
-        fontSize: 12.5
+        fontSize: 13
     }
 });

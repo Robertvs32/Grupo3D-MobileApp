@@ -10,7 +10,7 @@ import { colors } from '../../styles/colors';
 
         function changeDate(event, selectedDate){
             if(Platform.OS == 'android'){
-                if(dateIni.getTime() > selectedDate.getTime()){
+                if(selectedDate.getTime() > dateIni.getTime()){
                     Alert.alert("A data final não pode ser menor que a data de inicio!")
                 } 
                 else {
@@ -30,7 +30,6 @@ import { colors } from '../../styles/colors';
                 Alert.alert("A data final não pode ser menor que a data de início!");
             } 
         }
-
 
 
         return(
@@ -111,7 +110,7 @@ import { colors } from '../../styles/colors';
             color: 'white'
         },
         containerDateTimePicker:{
-            backgroundColor: 'rgba(255, 255, 255, 0.09)',
+            backgroundColor: 'rgba(78, 77, 76, 1)',
             alignItems: 'center',
             paddingTop: 20,
             marginVertical: 20,

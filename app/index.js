@@ -1,11 +1,8 @@
 import { FontAwesome } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { collection, getDocs, query, where } from 'firebase/firestore';
 import { useState } from 'react';
-import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import logo from './assets/images/logo.png';
-import { auth, db } from './config/firebaseconfig';
 import { colors } from './styles/colors';
 
 export default function Index() {
@@ -14,39 +11,6 @@ export default function Index() {
   const [senha, setSenha] = useState('');
 
   const router = useRouter();
-
-  const handleLogin = async () => {
-
-    if(!usuario || !senha){
-        Alert.alert("Preencha os campos!");
-        return;
-    }
-
-    try{ 
-
-        const usersRef = collection(db, 'users');
-        const q = query(usersRef, where('user', '==', usuario));
-        const querySnapshot = await getDocs(q);
-
-        if(querySnapshot.empty){
-            Alert.alert("Usuário inválido!");
-            return ;
-        }
-
-        let email = null;
-        querySnapshot.forEach(doc => {
-            email = doc.data().email;
-        })
-
-      await signInWithEmailAndPassword(auth, email, senha);
-
-      router.replace('./screens/home');
-      
-    }
-    catch(error){
-      Alert.alert(`Não foi possível fazer login! ${error}`);
-    }
-  }
 
   return (
     <View style={styles.container}>
@@ -91,7 +55,7 @@ export default function Index() {
 
       <TouchableOpacity 
         style={styles.buttonLogin}
-        onPress={handleLogin}
+        onPress={() => router.replace('./home')}
       >
         <Text style={styles.buttonLoginText}>Fazer login</Text>
       </TouchableOpacity>

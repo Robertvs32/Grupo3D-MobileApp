@@ -2,289 +2,209 @@ import { useLocalSearchParams } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import Alimentacao from './components/formComponents/Alimentacao';
-import Atribuicao from './components/formComponents/Atribuicao';
-import BtnEnviar from './components/formComponents/BtnEnviar';
-import BtnVoltar from './components/formComponents/BtnVoltar';
-import DataFim from './components/formComponents/DataFim';
-import DataInicio from './components/formComponents/DataInicio';
-import Estacionamento from './components/formComponents/Estacionamento';
-import HoraFim from './components/formComponents/HoraFim';
-import HoraInicio from './components/formComponents/HoraInicio';
-import Inversor from './components/formComponents/Inversor';
-import Job from './components/formComponents/Job';
-import KmFinal from './components/formComponents/KmFinal';
-import KmInicial from './components/formComponents/KmInicial';
-import ModalBack from './components/formComponents/ModalBack';
-import MotoristaParceiro from './components/formComponents/MotoristaParceiro';
-import Obs from './components/formComponents/Obs';
-import Pedagio from './components/formComponents/Pedagio';
-import ProdutorEmpresa from './components/formComponents/ProdutorEmpresa';
-import ProdutorPessoa from './components/formComponents/ProdutorPessoa';
-import Setor from './components/formComponents/Setor';
-import ZonaAzul from './components/formComponents/zonaAzul';
-import PlacaCarro from './components/Placa';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { colors } from './styles/colors';
-import { loadData, saveData } from './utils/saveDataLoad';
+import { useFormData } from './utils/useForm';
+
+import {
+    Alimentacao,
+    Atribuicao,
+    BtnEnviar,
+    BtnVoltar,
+    DataFim,
+    DataInicio,
+    Estacionamento,
+    HoraFim,
+    HoraInicio,
+    Inversor,
+    Job,
+    KmFinal,
+    KmInicial,
+    ModalBack,
+    ModalForm,
+    MotoristaParceiro,
+    Obs,
+    Pedagio,
+    PlacaCarro,
+    ProdutorEmpresa,
+    ProdutorPessoa,
+    Setor,
+    ZonaAzul
+} from './components/components';
 
 export default function Formulario(){
 
     const { loadData: shouldLoadData } = useLocalSearchParams();
 
-    //STATES
-    const [dateIni, setDateIni] = useState(new Date());
-    const [dateFim, setDateFim] = useState(new Date());
-    const [obs, setObs] = useState('');
-    const [estacionamento, setEstacionamento] = useState('');
-    const [valorEstacionamento, setValorEstacionamento] = useState('');
-    const [horaIni, setHoraIni] = useState(new Date());
-    const [horaFim, setHoraFim] = useState(new Date());
-    const [job, setJob] = useState('');
-    const [produtorEmpresa, setProdutorEmpresa] = useState('');
-    const [produtorPessoa, setProdutorPessoa] = useState('');
-    const [kmIni, setKmIni] = useState('');
-    const [kmFim, setKmFim] = useState('');
-    const [zonaAzul, setZonaAzul] = useState('');
-    const [qtdZonaAzul, setQtdZonaAzul] = useState('');
-    const [valorZonaAzul, setValorZonaAzul] = useState(0);
-    const [inversor, setInversor] = useState('');
-    const [pedagio, setPedagio] = useState('');
-    const [parceiro, setParceiro] = useState('');
-    const [valorPedagioParceiro, setValorPedagioParceiro] = useState(0);
-    const [placa, setPlaca] = useState("Selecione a placa");
-    const [atribuicao, setAtribuicao] = useState("Selecionar atribuição");
-    const [setor, setSetor] = useState("Selecionar setor");
-    const [outrosAtribuicao, setOutrosAtribuicao] = useState('');
-    const [outrosSetor, setOutrosSetor] = useState('');
-    const [alimentacao, setAlimentacao] = useState('');
-    const [arrayAlimentacao, setArrayAlimentacao] = useState([
-        {id: 1, refeicao: '', valor: ''},
-    ]);
-    const [showModal, setShowModal] = useState(false);
-    //FIM STATES
-     
-    const objectStates = {
-        dateIni,
-        dateFim,
-        obs,
-        estacionamento,
-        valorEstacionamento,
-        horaIni,
-        horaFim,
-        job,
-        produtorEmpresa,
-        produtorPessoa,
-        kmIni,
-        kmFim,
-        zonaAzul,
-        qtdZonaAzul,
-        valorZonaAzul,
-        inversor,
-        pedagio,
-        parceiro,
-        valorPedagioParceiro,
-        placa,
-        atribuicao,
-        setor,
-        outrosAtribuicao,
-        outrosSetor,
-        alimentacao,
-        arrayAlimentacao
-    }
+    const [showModalBack, setShowModalBack] = useState(false);
+    const [showModalForm, setShowModalForm] = useState(false);
 
-    const objectSets = {
-        setDateIni,
-        setDateFim,
-        setObs,
-        setEstacionamento,
-        setValorEstacionamento,
-        setHoraIni,
-        setHoraFim,
-        setJob,
-        setProdutorEmpresa,
-        setProdutorPessoa,
-        setKmIni,
-        setKmFim,
-        setZonaAzul,
-        setQtdZonaAzul,
-        setValorZonaAzul,
-        setInversor,
-        setPedagio,
-        setParceiro,
-        setValorPedagioParceiro,
-        setPlaca,
-        setAtribuicao,
-        setSetor,
-        setOutrosAtribuicao,
-        setOutrosSetor,
-        setAlimentacao,
-        setArrayAlimentacao
-    }
-
-    const handleSave = async () => {
-        await saveData(objectStates);
-    }
-
-    const handleLoad = async () => {
-        await loadData(objectSets);
-    }
+    const form = useFormData();
 
     useEffect(() => {
         if(shouldLoadData == 'true'){
-            handleLoad();
+            form.handleLoad();
         }
         else {
             const tempDate = (new Date());
             tempDate.setHours(0, 0, 0, 0);
-            setDateIni(tempDate);
-            setDateFim(tempDate);
+            form.setDateIni(tempDate);
+            form.setDateFim(tempDate);
         }
     }, [])
 
     return(
-        <View style={styles.containerSafeView}>
+        <SafeAreaView style={styles.containerSafeView}>
 
             <StatusBar style="light"/>
 
             <Text style={styles.titleRelatorio}>Relatório de viagem</Text>
 
             <ScrollView style={styles.containerScroll}>
-                    <View style={styles.containerView}>
+                <View style={styles.containerView}>
 
-                            <PlacaCarro
-                                state={placa}
-                                setState={setPlaca}
-                            />
+                    <PlacaCarro
+                        state={form.placa}
+                        setState={form.setPlaca}
+                    />
 
-                            <DataInicio
-                                dateIni={dateIni}
-                                setDateIni={setDateIni}
-                                dateFim={dateFim}
-                            />
-                            
-                            <HoraInicio
-                                timeIni={horaIni}
-                                setTimeIni={setHoraIni}
-                                dateIni={dateIni}
-                                timeFim={horaFim}
-                                dateFim={dateFim}
-                            />
+                    <DataInicio
+                        dateIni={form.dateIni}
+                        setDateIni={form.setDateIni}
+                        dateFim={form.dateFim}
+                    />
+                    
+                    <HoraInicio
+                        timeIni={form.horaIni}
+                        setTimeIni={form.setHoraIni}
+                        dateIni={form.dateIni}
+                        timeFim={form.horaFim}
+                        dateFim={form.dateFim}
+                    />
 
-                            <DataFim
-                                dateFim={dateFim}
-                                setDateFim={setDateFim}
-                                dateIni={dateIni}
-                            />
-                            <HoraFim
-                                timeFim={horaFim}
-                                setTimeFim={setHoraFim}
-                                dateIni={dateIni}
-                                timeIni={horaIni}
-                                dateFim={dateFim}
-                            />
+                    <DataFim
+                        dateFim={form.dateFim}
+                        setDateFim={form.setDateFim}
+                        dateIni={form.dateIni}
+                    />
+                    <HoraFim
+                        timeFim={form.horaFim}
+                        setTimeFim={form.setHoraFim}
+                        dateIni={form.dateIni}
+                        timeIni={form.horaIni}
+                        dateFim={form.dateFim}
+                    />
 
-                            <Job
-                                job={job}
-                                setJob={setJob}
-                            />
+                    <Job
+                        job={form.job}
+                        setJob={form.setJob}
+                    />
 
-                            <KmInicial
-                                kmIni={kmIni}
-                                setKmIni={setKmIni}
-                            />
+                    <KmInicial
+                        kmIni={form.kmIni}
+                        setKmIni={form.setKmIni}
+                    />
 
-                            <KmFinal
-                                kmFim={kmFim}
-                                setKmFim={setKmFim}
-                            />
+                    <KmFinal
+                        kmFim={form.kmFim}
+                        setKmFim={form.setKmFim}
+                    />
 
-                            <ProdutorEmpresa
-                                produtorEmpresa={produtorEmpresa}
-                                setProdutorEmpresa={setProdutorEmpresa}
-                            />
+                        <ProdutorEmpresa
+                        produtorEmpresa={form.produtorEmpresa}
+                        setProdutorEmpresa={form.setProdutorEmpresa}
+                    />
 
-                            <ProdutorPessoa
-                                produtorPessoa={produtorPessoa}
-                                setProdutorPessoa={setProdutorPessoa}
-                            />
+                    <ProdutorPessoa
+                        produtorPessoa={form.produtorPessoa}
+                        setProdutorPessoa={form.setProdutorPessoa}
+                    />
 
-                            <Atribuicao
-                                state={atribuicao}
-                                setState={setAtribuicao}
-                                setOutros={setOutrosAtribuicao}
-                            />
+                    <Atribuicao
+                        state={form.atribuicao}
+                        setState={form.setAtribuicao}
+                        setOutros={form.setOutrosAtribuicao}
+                    />
 
-                            <Setor
-                                state={setor}
-                                setState={setSetor}
-                                setOutros={setOutrosSetor}
-                            />
+                    <Setor
+                        state={form.setor}
+                        setState={form.setSetor}
+                        setOutros={form.setOutrosSetor}
+                    />
 
-                            <MotoristaParceiro
-                                parceiro={parceiro}
-                                setParceiro={setParceiro}
-                            />
+                    <MotoristaParceiro
+                        parceiro={form.parceiro}
+                        setParceiro={form.setParceiro}
+                    />
 
-                            <Pedagio
-                                pedagio={pedagio}
-                                setPedagio={setPedagio}
-                                parceiro={parceiro}
-                                valorPedagioParceiro={valorPedagioParceiro}
-                                setValorPedagioParceiro={setValorPedagioParceiro}
-                            />
+                    <Pedagio
+                        pedagio={form.pedagio}
+                        setPedagio={form.setPedagio}
+                        parceiro={form.parceiro}
+                        valorPedagioParceiro={form.valorPedagioParceiro}
+                        setValorPedagioParceiro={form.setValorPedagioParceiro}
+                    />
 
-                            <ZonaAzul
-                                zonaAzul={zonaAzul}
-                                setZonaAzul={setZonaAzul}
-                                qtdZonaAzul={qtdZonaAzul}
-                                setQtdZonaAzul={setQtdZonaAzul}
-                                valorZonaAzul={valorZonaAzul}
-                                setValorZonaAzul={setValorZonaAzul}
+                    <ZonaAzul
+                        zonaAzul={form.zonaAzul}
+                        setZonaAzul={form.setZonaAzul}
+                        qtdZonaAzul={form.qtdZonaAzul}
+                        setQtdZonaAzul={form.setQtdZonaAzul}
+                        valorZonaAzul={form.valorZonaAzul}
+                        setValorZonaAzul={form.setValorZonaAzul}
 
-                            />
+                    />
 
-                            <Alimentacao
-                                state={alimentacao}
-                                setState={setAlimentacao}
-                                array={arrayAlimentacao}
-                                setArray={setArrayAlimentacao}
-                            />
+                    <Alimentacao
+                        state={form.alimentacao}
+                        setState={form.setAlimentacao}
+                        array={form.arrayAlimentacao}
+                        setArray={form.setArrayAlimentacao}
+                    />
 
-                            <Inversor
-                                inversor={inversor}
-                                setInversor={setInversor}
-                            />
+                    <Inversor
+                        inversor={form.inversor}
+                        setInversor={form.setInversor}
+                    />
 
-                            <Estacionamento
-                                estacionamento={estacionamento}
-                                valorEstacionamento={valorEstacionamento}
-                                setEstacionamento={setEstacionamento}
-                                setValorEstacionamento={setValorEstacionamento}
-                            />
-                            <Obs
-                                obs={obs}
-                                setObs={setObs}
-                            />
+                    <Estacionamento
+                        estacionamento={form.estacionamento}
+                        valorEstacionamento={form.valorEstacionamento}
+                        setEstacionamento={form.setEstacionamento}
+                        setValorEstacionamento={form.setValorEstacionamento}
+                    />
+                    <Obs
+                        obs={form.obs}
+                        setObs={form.setObs}
+                    />
 
-                    </View>
+                </View>
             </ScrollView>
 
 
             <View style={styles.containerBtns}>
                 <BtnVoltar
-                    showModal={showModal}
-                    setShowModal={setShowModal}
+                    showModal={showModalBack}
+                    setShowModal={setShowModalBack}
                 />
-                <BtnEnviar/>
+                <BtnEnviar
+                    showModalForm={showModalForm}
+                    setShowModalForm={setShowModalForm}    
+                />
             </View>
 
             <ModalBack
-                visible={showModal}
-                setShowModal={setShowModal}
-                saveData={handleSave}
+                visible={showModalBack}
+                setShowModal={setShowModalBack}
+                saveData={form.handleSave}
             />
 
-        </View>
+            <ModalForm
+                visible={showModalForm}
+                setShowModal={setShowModalForm}
+            />
+
+        </SafeAreaView>
         
     )
 }
@@ -296,7 +216,7 @@ const styles = StyleSheet.create({
         paddingVertical: 10
     },
     containerScroll:{
-        backgroundColor: 'rgba(130, 128, 128, 1)',
+        backgroundColor: 'rgba(197, 195, 195, 1)',
         borderRadius: 7,
         margin: 10,
         padding: 5

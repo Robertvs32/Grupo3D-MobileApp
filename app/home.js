@@ -1,6 +1,7 @@
 import { useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import logo from './assets/images/logo.png';
 import { colors } from './styles/colors';
 
@@ -17,7 +18,7 @@ export default function Home(){
     }
         
     return(
-        <View style={styles.containerView}>
+        <SafeAreaView style={styles.containerView}>
 
             <StatusBar style="light"/>
 
@@ -43,13 +44,13 @@ export default function Home(){
             </View>
             
 
-        </View>
+        </SafeAreaView>
     );
 }
 
 const styles = StyleSheet.create({
     containerView:{
-        backgroundColor: 'rgba(74, 74, 74, 1)',
+        backgroundColor: 'rgba(33, 33, 33, 1)',
         flex: 1,
         justifyContent: 'space-between',
         alignItems: 'center',
