@@ -32,9 +32,10 @@ import {
     ZonaAzul
 } from './components/components';
 
-export default function Formulario(){
+export default function formulario(){
 
     const { loadData: shouldLoadData } = useLocalSearchParams();
+    const { motorista: nomeMotorista } = useLocalSearchParams();
 
     const [showModalBack, setShowModalBack] = useState(false);
     const [showModalForm, setShowModalForm] = useState(false);
@@ -50,6 +51,7 @@ export default function Formulario(){
             tempDate.setHours(0, 0, 0, 0);
             form.setDateIni(tempDate);
             form.setDateFim(tempDate);
+            form.setMotorista(nomeMotorista);
         }
     }, [])
 
@@ -58,7 +60,7 @@ export default function Formulario(){
 
             <StatusBar style="light"/>
 
-            <Text style={styles.titleRelatorio}>Relatório de viagem</Text>
+            <Text style={styles.titleRelatorio}>{form.motorista}</Text>
 
             <ScrollView style={styles.containerScroll}>
                 <View style={styles.containerView}>
@@ -202,6 +204,7 @@ export default function Formulario(){
             <ModalForm
                 visible={showModalForm}
                 setShowModal={setShowModalForm}
+                funcaoEnviar={form.enviarDados}
             />
 
         </SafeAreaView>

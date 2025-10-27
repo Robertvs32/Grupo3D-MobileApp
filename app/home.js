@@ -1,20 +1,30 @@
-import { useRouter } from 'expo-router';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import logo from './assets/images/logo.png';
 import { colors } from './styles/colors';
 
-export default function Home(){
+export default function home(){
+
+    const { usuario: motorista } = useLocalSearchParams();
 
     const router = useRouter();
 
+    const localStorage = '@dadosForm';
+
     function novoRelatorio(){
-        router.push('./formulario')
+        router.push({pathname: './formulario', params: { motorista: motorista}});
     }
 
-    function carregarRelatorio(){
-        router.push({pathname: './formulario', params: { loadData: true}});
+    async function carregarRelatorio(){
+        if(await AsyncStorage.getItem(localStorage) == null){
+            Alert.alert("Nao ha relatorio salvo!");
+        } else {
+            router.push({pathname: './formulario', params: { loadData: true}});
+        }
+        
     }
         
     return(
@@ -32,7 +42,7 @@ export default function Home(){
                     style={styles.btnNovoRelatorio}
                     onPress={carregarRelatorio}
                 >
-                    <Text style={styles.txtRelatorio}>Carregar relatório</Text>
+                    <Text style={styles.txtRelatorio}>Carregar relatorio</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity 

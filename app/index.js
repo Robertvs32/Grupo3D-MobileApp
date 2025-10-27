@@ -4,13 +4,19 @@ import { useState } from 'react';
 import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import logo from './assets/images/logo.png';
 import { colors } from './styles/colors';
+import { emailByUser, login } from './utils/loginLogout';
 
-export default function Index() {
+export default function index() {
+
+  const router = useRouter();
+  
+  const handleLogin = async () => {
+    const email = await emailByUser(usuario);
+    await login(email, senha, usuario, router);
+  }
 
   const [usuario, setUsuario] = useState('');
   const [senha, setSenha] = useState('');
-
-  const router = useRouter();
 
   return (
     <View style={styles.container}>
@@ -55,7 +61,7 @@ export default function Index() {
 
       <TouchableOpacity 
         style={styles.buttonLogin}
-        onPress={() => router.replace('./home')}
+        onPress={() => handleLogin()}
       >
         <Text style={styles.buttonLoginText}>Fazer login</Text>
       </TouchableOpacity>
@@ -122,8 +128,5 @@ const styles = StyleSheet.create({
     marginBottom: 50,
     resizeMode: 'contain'
   },
-  
-  
-
 });
 

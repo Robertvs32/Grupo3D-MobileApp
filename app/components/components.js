@@ -1,4 +1,3 @@
-
 export { default as Alimentacao } from '../components/formComponents/Alimentacao';
 export { default as Atribuicao } from '../components/formComponents/Atribuicao';
 export { default as BtnEnviar } from '../components/formComponents/BtnEnviar';

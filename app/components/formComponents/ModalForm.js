@@ -1,6 +1,7 @@
 import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-export default function ModalForm({visible, setShowModal}){
+
+export default function ModalForm({visible, setShowModal, funcaoEnviar}){
 
     return(
         <Modal 
@@ -21,6 +22,10 @@ export default function ModalForm({visible, setShowModal}){
 
                         <TouchableOpacity 
                             style={styles.btn}
+                            onPress={async () => {
+                                setShowModal(!visible);
+                                await funcaoEnviar();
+                            }}
                         >
                             <Text style={styles.txtBtn}>Enviar</Text>
                         </TouchableOpacity>

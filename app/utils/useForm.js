@@ -1,8 +1,12 @@
+import { addDoc, collection } from 'firebase/firestore';
 import { useState } from 'react';
+import { Alert } from 'react-native';
+import { db } from '../config/firebaseconfig';
 import { loadData, saveData } from '../utils/saveDataLoad';
 
 export function useFormData(){
 
+        const [motorista, setMotorista] = useState('')
         const [dateIni, setDateIni] = useState(new Date);
         const [dateFim, setDateFim] = useState(new Date);
         const [horaIni, setHoraIni] = useState(new Date);
@@ -33,6 +37,7 @@ export function useFormData(){
         ]);
          
         const objectGetters = {
+            motorista,
             dateIni,
             dateFim,
             obs,
@@ -62,6 +67,7 @@ export function useFormData(){
         }
     
         const objectSetters = {
+            setMotorista,
             setDateIni,
             setDateFim,
             setObs,
@@ -98,7 +104,7 @@ export function useFormData(){
             await loadData(objectSetters);
         }
 
-        const enviarDadosJson = async (url) => {
+        const enviarDados = async () => {
 
             const dateTimeIni = new Date();
             const dateTimeFim = new Date();
@@ -112,48 +118,45 @@ export function useFormData(){
 
 
             const valores = {
+                motorista,
                 dateTimeIni,
                 dateTimeFim,
                 obs,
                 estacionamento,
-                valorEstacionamento,
+                valorEstacionamento: Number(valorEstacionamento),
                 job,
                 produtorEmpresa,
                 produtorPessoa,
-                kmIni,
-                kmFim,
+                kmIni: Number(kmIni),
+                kmFim: Number(kmFim),
                 zonaAzul,
-                qtdZonaAzul,
-                valorZonaAzul,
+                qtdZonaAzul: Number(kmIni),
+                valorZonaAzul: Number(kmIni),
                 inversor,
                 pedagio,
                 parceiro,
-                valorPedagioParceiro,
+                valorPedagioParceiro: Number(valorPedagioParceiro),
                 placa,
                 atribuicao,
                 setor,
                 outrosAtribuicao,
                 outrosSetor,
                 alimentacao,
-                arrayAlimentacao
+                arrayAlimentacao: arrayAlimentacao.map(item => ({
+                    ...item,
+                    valor: Number(item.valor),
+                }))
             }
-
-            const json = JSON.stringify(valores);
 
             try{
+            
+                const docRef = await addDoc(collection(db, "relatoriostemporarios"), valores);
 
-                fetch(url, {
-                    method: 'POST',
-                    body: json
-                });
-
-                Alert.alert("Relatório enviado!");
-
+                Alert.alert("Sucesso!","Relatório enviado! ID do documento: " + docRef.id);
+            
             } catch(error){
-                Alert.alert("Erro ao enviar relatório!");
+                Alert.alert("Erro","Erro ao enviar relatório! Verifique sua conexão ou configuração.");
             }
-
-
         }
 
         return{
@@ -161,6 +164,6 @@ export function useFormData(){
             ...objectSetters,
             handleSave,
             handleLoad,
-            enviarDadosJson,
+            enviarDados,
         };
 }

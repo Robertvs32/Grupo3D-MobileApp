@@ -1,4 +1,4 @@
-    import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Alert } from 'react-native';
 
     //ARQUIVO QUE ARMAZENA OS DADOS DOS FORMULÁRIOS
@@ -23,7 +23,8 @@ import { Alert } from 'react-native';
             const jsonValue = await AsyncStorage.getItem(localStorage);
             if(jsonValue != null){
                 const loadedData = JSON.parse(jsonValue)
-
+                
+                setters.setMotorista(loadedData.motorista)
                 setters.setDateIni(new Date(loadedData.dateIni))
                 setters.setDateFim(new Date(loadedData.dateFim))
                 setters.setObs(loadedData.obs)
@@ -58,7 +59,6 @@ import { Alert } from 'react-native';
             Alert.alert(`Erro ${e}`);
         }
     };
-
 
 
     export const clearData = (setters) => {
