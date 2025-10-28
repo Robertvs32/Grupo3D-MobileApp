@@ -7,10 +7,11 @@ import InputCheckBox from '../InputCheckBox';
 
         const [contador, setContador] = useState(array[array.length - 1].id + 1);
 
+        //ADICIONA UM NOVO OBJETO AO ARRAY DE REFEICOES
         function adicionarRef(){
             const novoItem = {
                 id: contador,
-                nome: '',
+                refeicao: '',
                 valor: ''
             }
 
@@ -20,6 +21,7 @@ import InputCheckBox from '../InputCheckBox';
             setArray(arrayTemporario);
         }
 
+        //REMOVE A ULTIMA REFEICAO SE O TAMANHO DO ARRAY FOR MAIOR QUE 1
         function removerRef(){
             if(array.length > 1){
                 setArray(array.slice(0, -1));
@@ -29,6 +31,7 @@ import InputCheckBox from '../InputCheckBox';
             }
         }
 
+        //ALTERA O VALOR DENTRO DA PROPRIEDADE VALOR OU REFEICAO
         function changeRef(text, id, campo){
             const arrayAtualizado = array.map(item => {
                 if(item.id == id){
@@ -41,7 +44,7 @@ import InputCheckBox from '../InputCheckBox';
             setArray(arrayAtualizado);
         }
 
-
+        //SEMPRE QUE O ESTADO ARRAY MUDA, O CONTADOR ATUALIZA PARA O VALOR DO ID DO ULTIMO ELEMENTO + 1 (NUNCA SER REPETIDO)
         useEffect(() => {
             setContador(array[array.length - 1].id + 1);
         }, [ array ]);

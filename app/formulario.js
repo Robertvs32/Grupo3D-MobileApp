@@ -60,7 +60,7 @@ export default function formulario(){
 
             <StatusBar style="light"/>
 
-            <Text style={styles.titleRelatorio}>{form.motorista}</Text>
+            <Text style={styles.titleRelatorio}>Relatorio de viagem</Text>
 
             <ScrollView style={styles.containerScroll}>
                 <View style={styles.containerView}>
