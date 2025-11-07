@@ -3,26 +3,24 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { Alert, Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import logo from './assets/images/logo.png';
-import { colors } from './styles/colors';
+import logo from '../assets/images/logo.png';
+import { colors } from '../styles/colors';
 
 export default function home(){
 
     const { usuario: motorista } = useLocalSearchParams();
-
     const router = useRouter();
-
     const localStorage = '@dadosForm';
 
     function novoRelatorio(){
-        router.push({pathname: './formulario', params: { motorista: motorista}});
+        router.push({pathname: '../formulario', params: { motorista: motorista}});
     }
 
     async function carregarRelatorio(){
         if(await AsyncStorage.getItem(localStorage) == null){
             Alert.alert("Nao ha relatorio salvo!");
         } else {
-            router.push({pathname: './formulario', params: { loadData: true}});
+            router.push({pathname: '../formulario', params: { loadData: true}});
         }
         
     }

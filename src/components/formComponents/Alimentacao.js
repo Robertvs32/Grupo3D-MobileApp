@@ -11,14 +11,14 @@ import InputCheckBox from '../InputCheckBox';
         function adicionarRef(){
             const novoItem = {
                 id: contador,
-                refeicao: '',
-                valor: ''
+                valor: '',
+                refeicao: ''
             }
 
             setContador(contador + 1);
 
-            const arrayTemporario = [...array, novoItem];
-            setArray(arrayTemporario);
+            const novoArray = [...array, novoItem];
+            setArray(novoArray);
         }
 
         //REMOVE A ULTIMA REFEICAO SE O TAMANHO DO ARRAY FOR MAIOR QUE 1

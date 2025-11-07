@@ -2,9 +2,9 @@ import { FontAwesome } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
-import logo from './assets/images/logo.png';
-import { colors } from './styles/colors';
-import { emailByUser, login } from './utils/loginLogout';
+import logo from '../assets/images/logo.png';
+import { colors } from '../styles/colors';
+import { emailByUser, login } from '../utils/loginLogout';
 
 export default function index() {
 
