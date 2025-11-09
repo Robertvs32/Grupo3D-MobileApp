@@ -1,7 +1,7 @@
 import { FontAwesome } from '@expo/vector-icons';
 import { useState } from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
-import { colors } from '../../styles/colors';
+import { colors } from '../../assets/styles/colors';
 
 export default function Obs({setObs, obs}){
 

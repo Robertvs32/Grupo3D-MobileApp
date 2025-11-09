@@ -1,6 +1,6 @@
 import { FontAwesome } from '@expo/vector-icons';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
-import { colors } from '../styles/colors';
+import { colors } from '../assets/styles/colors';
 
 export default function InputComponent({txtInput, txtPlaceholder, setState, value, iconName, size}){
     return(

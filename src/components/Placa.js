@@ -1,17 +1,29 @@
 import { FontAwesome } from '@expo/vector-icons';
 import { useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { colors } from '../styles/colors';
+import { colors } from '../assets/styles/colors';
 
 export default function Placa({state, setState}){
 
     const [exibir, setExibir] = useState(false);
 
     const placas = [
-        { placa: 'Placa 1' },
-        { placa: 'Placa 2' },
-        { placa: 'Placa 3' },
-        { placa: 'Placa 4' },
+        {
+            placa: 'Placa 1',
+            valorKm: 54.00
+        },
+        { 
+            placa: 'Placa 2',
+            valorKm: 75.00 
+        },
+        { 
+            placa: 'Placa 3',
+            valorKm: 12.00 
+        },
+        { 
+            placa: 'Placa 4',
+            valorKm: 35.00 
+        },
     ]
 
     function selectPlaca(item, index){

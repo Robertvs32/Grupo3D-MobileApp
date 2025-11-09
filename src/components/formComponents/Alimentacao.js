@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import IconAlimentacao from '../../assets/icons/alimentacao.png';
 import InputCheckBox from '../InputCheckBox';
 
 
@@ -55,11 +56,11 @@ import InputCheckBox from '../InputCheckBox';
                     txtInput="Alimentação"
                     btnState={state}
                     setbtnState={setState}
-                    iconName="user"
+                    img={IconAlimentacao}
                     size={19}
                 />
 
-                {(state == 'true') && (
+                {(state == true) && (
 
                     <View>
 

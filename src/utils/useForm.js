@@ -35,6 +35,8 @@ export function useFormData(){
         const [arrayAlimentacao, setArrayAlimentacao] = useState([
             {id: 1, refeicao: '', valor: ''},
         ]);
+        const verificado = false;
+        const [horasTrabalhadas, setHorasTrabalhadas] = useState();
          
         const objectGetters = {
             motorista,
@@ -117,6 +119,9 @@ export function useFormData(){
             dateTimeFim.setHours(horaFim.getHours(), horaFim.getMinutes(), 0, 0);
 
 
+            setHorasTrabalhadas(dateTimeFim - dateTimeIni);
+
+        
             const valores = {
                 motorista,
                 dateTimeIni,
@@ -142,20 +147,23 @@ export function useFormData(){
                 outrosAtribuicao,
                 outrosSetor,
                 alimentacao,
-                arrayAlimentacao: arrayAlimentacao.map(item => ({
+                ...(alimentacao && {arrayAlimentacao: arrayAlimentacao.map(item => ({
                     ...item,
                     valor: Number(item.valor),
-                }))
+                })),}),
+                verificado,
+                horasTrabalhadas,
+                dateIni
             }
 
             try{
-            
-                const docRef = await addDoc(collection(db, "relatoriostemporarios"), valores);
+
+                const docRef = await addDoc(collection(db, "relatorios"), valores);
 
                 Alert.alert("Sucesso!","Relatório enviado! ID do documento: " + docRef.id);
             
             } catch(error){
-                Alert.alert("Erro","Erro ao enviar relatório! Verifique sua conexão ou configuração.");
+                Alert.alert(`Erro ao enviar relatório!`);
             }
         }
 

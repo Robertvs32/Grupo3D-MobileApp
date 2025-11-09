@@ -1,22 +1,14 @@
 import { FontAwesome } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
-import { useState } from 'react';
 import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import logo from '../assets/images/logo.png';
-import { colors } from '../styles/colors';
-import { emailByUser, login } from '../utils/loginLogout';
+import { colors } from '../assets/styles/colors';
+import useLogin from '../utils/useLogin';
 
 export default function index() {
 
   const router = useRouter();
-  
-  const handleLogin = async () => {
-    const email = await emailByUser(usuario);
-    await login(email, senha, usuario, router);
-  }
-
-  const [usuario, setUsuario] = useState('');
-  const [senha, setSenha] = useState('');
+  const { login, setUsuario, setSenha } = useLogin(); //AQUI SE DER ERRADO!!! TIRAR O {} E USAR COMO OBJETO
 
   return (
     <View style={styles.container}>
@@ -61,7 +53,7 @@ export default function index() {
 
       <TouchableOpacity 
         style={styles.buttonLogin}
-        onPress={() => handleLogin()}
+        onPress={() => login(router)} //ARRUMAR AQUI TBM - ACESSAE COMO OBJETO
       >
         <Text style={styles.buttonLoginText}>Fazer login</Text>
       </TouchableOpacity>

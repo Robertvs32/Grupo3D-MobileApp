@@ -2,7 +2,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useEffect, useState } from 'react';
 import { Alert, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { colors } from '../../styles/colors';
+import { colors } from '../../assets/styles/colors';
 
     export default function HoraFim({timeFim, setTimeFim, dateIni, dateFim, timeIni}){
 

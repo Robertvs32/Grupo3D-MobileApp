@@ -4,7 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import { Alert, Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import logo from '../assets/images/logo.png';
-import { colors } from '../styles/colors';
+import { colors } from '../assets/styles/colors';
 
 export default function home(){
 

@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "estudoReactNative",
-    "slug": "estudoReactNative",
+    "name": "grupo3d",
+    "slug": "grupo3d",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "estudoreactnative",
+    "scheme": "grupo3d",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {

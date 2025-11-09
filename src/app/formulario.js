@@ -3,7 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { colors } from '../styles/colors';
+import { colors } from '../assets/styles/colors';
 import { useFormData } from '../utils/useForm';
 
 import {
