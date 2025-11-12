@@ -16,6 +16,8 @@ export default function Atribuicao({state, setState, setOutros}){
             object={Atribuicoes}
             nameSelect={"nome"}
             state={state}
+
+            
             setState={setState}
             txtContainer="Atribuição"
             setOutros={setOutros}

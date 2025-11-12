@@ -12,28 +12,28 @@ export function useFormData(){
         const [horaIni, setHoraIni] = useState(new Date);
         const [horaFim, setHoraFim] = useState(new Date);
         const [obs, setObs] = useState('');
-        const [estacionamento, setEstacionamento] = useState('');
+        const [estacionamento, setEstacionamento] = useState(false);
         const [valorEstacionamento, setValorEstacionamento] = useState('');
         const [job, setJob] = useState('');
         const [produtorEmpresa, setProdutorEmpresa] = useState('');
         const [produtorPessoa, setProdutorPessoa] = useState('');
         const [kmIni, setKmIni] = useState('');
         const [kmFim, setKmFim] = useState('');
-        const [zonaAzul, setZonaAzul] = useState('');
+        const [zonaAzul, setZonaAzul] = useState(false);
         const [qtdZonaAzul, setQtdZonaAzul] = useState('');
         const [valorZonaAzul, setValorZonaAzul] = useState(0);
-        const [inversor, setInversor] = useState('');
-        const [pedagio, setPedagio] = useState('');
-        const [parceiro, setParceiro] = useState('');
-        const [valorPedagioParceiro, setValorPedagioParceiro] = useState(0);
+        const [inversor, setInversor] = useState(false);
+        const [pedagio, setPedagio] = useState(false);
+        const [parceiro, setParceiro] = useState(false);
+        const [valorPedagioParceiro, setValorPedagioParceiro] = useState('');
         const [placa, setPlaca] = useState("Selecione a placa");
         const [atribuicao, setAtribuicao] = useState("Selecionar atribuição");
         const [setor, setSetor] = useState("Selecionar setor");
         const [outrosAtribuicao, setOutrosAtribuicao] = useState('');
         const [outrosSetor, setOutrosSetor] = useState('');
-        const [alimentacao, setAlimentacao] = useState('');
+        const [alimentacao, setAlimentacao] = useState(false);
         const [arrayAlimentacao, setArrayAlimentacao] = useState([
-            {id: 1, refeicao: '', valor: ''},
+            {id: 1, refeicao: '', valor: ''}
         ]);
         const verificado = false;
         const [horasTrabalhadas, setHorasTrabalhadas] = useState();
