@@ -10,7 +10,7 @@ import { colors } from '../../assets/styles/colors';
 
         function changeDate(event, selectedDate){
             if(Platform.OS == 'android'){
-                if(selectedDate.getTime() > dateIni.getTime()){
+                if(selectedDate.getTime() < dateIni.getTime()){
                     Alert.alert("A data final não pode ser menor que a data de inicio!")
                 } 
                 else {

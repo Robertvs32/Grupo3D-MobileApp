@@ -6,11 +6,13 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import logo from '../assets/images/logo.png';
 import { colors } from '../assets/styles/colors';
 
+
 export default function home(){
 
     const { usuario: motorista } = useLocalSearchParams();
     const router = useRouter();
     const localStorage = '@dadosForm';
+
 
     function novoRelatorio(){
         router.push({pathname: '../formulario', params: { motorista: motorista}});

@@ -1,14 +1,17 @@
 import { FontAwesome } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
+import { onAuthStateChanged } from 'firebase/auth';
 import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import logo from '../assets/images/logo.png';
 import { colors } from '../assets/styles/colors';
+import { auth } from '../config/firebaseconfig';
 import useLogin from '../utils/useLogin';
+import { useEffect } from 'react';
 
 export default function index() {
 
   const router = useRouter();
-  const { login, setUsuario, setSenha } = useLogin(); //AQUI SE DER ERRADO!!! TIRAR O {} E USAR COMO OBJETO
+  const { login, setUsuario, setSenha } = useLogin();
 
   return (
     <View style={styles.container}>

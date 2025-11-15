@@ -10,8 +10,8 @@ import { colors } from '../../assets/styles/colors';
 
         // FUNCAO QUE ATUALIZA O VALOR DO TIME INICIAL NO ANDROID
         function changeTimeAndroid(event, selectedTime){
-            if(dateIni.getTime() == dateFim.getTime() && timeIni.getTime() < selectedTime.getTime()){
-                Alert.alert("A hora final não pode ser menor que a hora Sinicial! ");
+            if(dateIni.getTime() == dateFim.getTime() && selectedTime.getTime() > timeFim.getTime()){
+                Alert.alert("A hora inicial não pode ser maior que a hora final! ");
                 setShowPicker(false);
             } 
             else {
