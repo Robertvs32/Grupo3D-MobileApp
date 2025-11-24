@@ -13,7 +13,7 @@ export default function Estacionamento({estacionamento, setEstacionamento, valor
                 size={18}
             />
         
-            {estacionamento == 'true' && (
+            {estacionamento == true && (
                 <InputComponent
                     txtInput="Valor (estacionamento)"
                     txtPlaceholder="Digite aqui"

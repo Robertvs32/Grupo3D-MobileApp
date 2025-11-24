@@ -15,7 +15,7 @@ export default function ZonaAzul({zonaAzul, setZonaAzul, valorZonaAzul, setValor
                 size={20}
             />
 
-            {zonaAzul == 'true' && (
+            {zonaAzul == true && (
                 <InputComponent
                     txtInput="Quantidade (zona azul)"
                     txtPlaceholder="Digite aqui"
@@ -26,7 +26,7 @@ export default function ZonaAzul({zonaAzul, setZonaAzul, valorZonaAzul, setValor
                 />
             )}
 
-            {zonaAzul == 'true' && (
+            {zonaAzul == true && (
                 <InputComponent
                     txtInput="Valor (zona azul)"
                     txtPlaceholder="Digite aqui"

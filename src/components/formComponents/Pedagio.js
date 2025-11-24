@@ -13,7 +13,7 @@ export default function Pedagio({ pedagio, setPedagio, parceiro, valorPedagioPar
                 size={20}
             />
         
-            {(parceiro == 'true' && pedagio == 'true') && (
+            {(parceiro == true && pedagio == true) && (
                 <InputComponent
                     txtInput="Valor pedágio"
                     txtPlaceholder="Digite aqui"

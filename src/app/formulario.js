@@ -1,9 +1,11 @@
 import { useLocalSearchParams } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
+import { onAuthStateChanged } from 'firebase/auth';
 import { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { colors } from '../assets/styles/colors';
+import { auth } from '../config/firebaseconfig';
 import { useFormData } from '../utils/useForm';
 
 import {
@@ -35,7 +37,6 @@ import {
 export default function formulario(){
 
     const { loadData: shouldLoadData } = useLocalSearchParams();
-    const { motorista: nomeMotorista } = useLocalSearchParams();
 
     const [showModalBack, setShowModalBack] = useState(false);
     const [showModalForm, setShowModalForm] = useState(false);
@@ -51,9 +52,15 @@ export default function formulario(){
             tempDate.setHours(0, 0, 0, 0);
             form.setDateIni(tempDate);
             form.setDateFim(tempDate);
-            form.setMotorista(nomeMotorista);
         }
     }, [])
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, user => {
+            form.setEmailMotorista(user.email);
+        }); 
+        return unsubscribe;
+    })
 
     return(
         <SafeAreaView style={styles.containerSafeView}>
@@ -112,7 +119,7 @@ export default function formulario(){
                         setKmFim={form.setKmFim}
                     />
 
-                        <ProdutorEmpresa
+                    <ProdutorEmpresa
                         produtorEmpresa={form.produtorEmpresa}
                         setProdutorEmpresa={form.setProdutorEmpresa}
                     />

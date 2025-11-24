@@ -1,12 +1,12 @@
-import { addDoc, collection } from 'firebase/firestore';
+import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
 import { useState } from 'react';
 import { Alert } from 'react-native';
 import { db } from '../config/firebaseconfig';
-import { loadData, saveData } from '../utils/saveDataLoad';
+import { loadData, saveData } from './saveDataLoad';
 
 export function useFormData(){
 
-        const [motorista, setMotorista] = useState('')
+        const [emailMotorista, setEmailMotorista] = useState('')
         const [dateIni, setDateIni] = useState(new Date);
         const [dateFim, setDateFim] = useState(new Date);
         const [horaIni, setHoraIni] = useState(new Date);
@@ -36,10 +36,10 @@ export function useFormData(){
             {id: 1, refeicao: '', valor: ''}
         ]);
         const verificado = false;
-        const [horasTrabalhadas, setHorasTrabalhadas] = useState();
+        const [horasTrabalhadas, setHorasTrabalhadas] = useState('');
          
         const objectGetters = {
-            motorista,
+            emailMotorista,
             dateIni,
             dateFim,
             obs,
@@ -69,7 +69,7 @@ export function useFormData(){
         }
     
         const objectSetters = {
-            setMotorista,
+            setEmailMotorista,
             setDateIni,
             setDateFim,
             setObs,
@@ -108,24 +108,24 @@ export function useFormData(){
 
         const enviarDados = async () => {
 
+            const q = query(collection(db, "users"), where("email", "==", emailMotorista));
+            const querySnapShot = await getDocs(q);
+            const dadosUsuario = querySnapShot.docs[0].data();
+            const motorista = dadosUsuario.user;
+
             const dateTimeIni = new Date();
             const dateTimeFim = new Date();
 
             dateTimeIni.setFullYear(dateIni.getFullYear(), dateIni.getMonth(), dateIni.getDate());
             dateTimeIni.setHours(horaIni.getHours(), horaIni.getMinutes(), 0, 0);
-            
 
             dateTimeFim.setFullYear(dateFim.getFullYear(), dateFim.getMonth(), dateFim.getDate());
             dateTimeFim.setHours(horaFim.getHours(), horaFim.getMinutes(), 0, 0);
 
-
             setHorasTrabalhadas(dateTimeFim - dateTimeIni);
 
-        
             const valores = {
                 motorista,
-                dateTimeIni,
-                dateTimeFim,
                 obs,
                 estacionamento,
                 valorEstacionamento: Number(valorEstacionamento),
@@ -153,7 +153,9 @@ export function useFormData(){
                 })),}),
                 verificado,
                 horasTrabalhadas,
-                dateIni
+                dateIni,
+                dateTimeIni,
+                dateTimeFim
             }
 
             try{
@@ -163,7 +165,7 @@ export function useFormData(){
                 Alert.alert("Sucesso!","Relatório enviado! ID do documento: " + docRef.id);
             
             } catch(error){
-                Alert.alert(`Erro ao enviar relatório!`);
+                Alert.alert(`Erro ao enviar relatório! ${error}`);
             }
         }
 

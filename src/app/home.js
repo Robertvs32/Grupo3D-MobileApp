@@ -1,21 +1,21 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
+import { signOut } from 'firebase/auth';
 import { Alert, Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import logo from '../assets/images/logo.png';
 import { colors } from '../assets/styles/colors';
+import { auth } from '../config/firebaseconfig';
 
 
 export default function home(){
 
-    const { usuario: motorista } = useLocalSearchParams();
     const router = useRouter();
     const localStorage = '@dadosForm';
 
-
     function novoRelatorio(){
-        router.push({pathname: '../formulario', params: { motorista: motorista}});
+        router.push('/formulario');
     }
 
     async function carregarRelatorio(){
@@ -37,6 +37,14 @@ export default function home(){
                 style={styles.logo}
             />
 
+            <TouchableOpacity
+                onPress={async () => {
+                    await signOut(auth);
+                }}
+            >
+                <Text>Logout</Text>
+            </TouchableOpacity>
+
             <View style={styles.containerBtns}>
                 <TouchableOpacity 
                     style={styles.btnNovoRelatorio}
@@ -53,7 +61,6 @@ export default function home(){
                 </TouchableOpacity>
             </View>
             
-
         </SafeAreaView>
     );
 }
