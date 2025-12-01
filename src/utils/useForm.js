@@ -36,6 +36,7 @@ export function useFormData(){
             {id: 1, refeicao: '', valor: ''}
         ]);
         const verificado = false;
+        const pagamento = "Pendente";
         const [horasTrabalhadas, setHorasTrabalhadas] = useState('');
          
         const objectGetters = {
@@ -152,6 +153,7 @@ export function useFormData(){
                     valor: Number(item.valor),
                 })),}),
                 verificado,
+                pagamento,
                 horasTrabalhadas,
                 dateIni,
                 dateTimeIni,
