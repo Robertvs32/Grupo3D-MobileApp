@@ -1,28 +1,14 @@
 import { FontAwesome } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
-import { onAuthStateChanged } from 'firebase/auth';
-import { useEffect } from 'react';
-import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import logo from '../assets/images/logo.png';
 import { colors } from '../assets/styles/colors';
-import { auth } from '../config/firebaseconfig';
-import useLogin from '../utils/useLogin';
+import useLogin from '../Hooks/useLogin';
 
 export default function index() {
 
   const router = useRouter();
   const { login, setUsuario, setSenha } = useLogin();
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, user => {
-      if(user){
-        Alert.alert("Login realizado com sucesso!")
-      } else {
-        Alert.alert("Não logado!");
-      }
-    })
-    return unsubscribe;
-  }, [])
 
   return (
     <View style={styles.container}>
@@ -67,7 +53,7 @@ export default function index() {
 
       <TouchableOpacity 
         style={styles.buttonLogin}
-        onPress={() => login(router)} //ARRUMAR AQUI TBM - ACESSAE COMO OBJETO
+        onPress={() => login(router)}
       >
         <Text style={styles.buttonLoginText}>Fazer login</Text>
       </TouchableOpacity>

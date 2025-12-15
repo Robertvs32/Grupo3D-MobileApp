@@ -4,6 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import { signOut } from 'firebase/auth';
 import { Alert, Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import logout from '../assets/icons/logout.png';
 import logo from '../assets/images/logo.png';
 import { colors } from '../assets/styles/colors';
 import { auth } from '../config/firebaseconfig';
@@ -24,7 +25,6 @@ export default function home(){
         } else {
             router.push({pathname: '../formulario', params: { loadData: true}});
         }
-        
     }
         
     return(
@@ -38,11 +38,16 @@ export default function home(){
             />
 
             <TouchableOpacity
+                style={styles.logoutContainer}
+
                 onPress={async () => {
                     await signOut(auth);
                 }}
             >
-                <Text>Logout</Text>
+                <Image
+                    source={logout}
+                    style={styles.logout}
+                />
             </TouchableOpacity>
 
             <View style={styles.containerBtns}>
@@ -99,6 +104,17 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 16
     },
+    logoutContainer: {
+        position: 'absolute',
+        left: '10',
+        top: '50'
+    },
+    logout: {
+        color: 'red',
+        width: '35',
+        height: '35',
+        resizeMode: 'contain',
+    }
 
     
 

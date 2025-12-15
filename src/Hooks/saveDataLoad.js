@@ -24,7 +24,6 @@ import { Alert } from 'react-native';
             if(jsonValue != null){
                 const loadedData = JSON.parse(jsonValue)
                 
-                setters.setMotorista(loadedData.motorista)
                 setters.setDateIni(new Date(loadedData.dateIni))
                 setters.setDateFim(new Date(loadedData.dateFim))
                 setters.setObs(loadedData.obs)

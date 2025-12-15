@@ -6,7 +6,7 @@ import { loadData, saveData } from './saveDataLoad';
 
 export function useFormData(){
 
-        const [emailMotorista, setEmailMotorista] = useState('')
+        const [emailMotorista, setEmailMotorista] = useState(''); 
         const [dateIni, setDateIni] = useState(new Date);
         const [dateFim, setDateFim] = useState(new Date);
         const [horaIni, setHoraIni] = useState(new Date);
@@ -40,7 +40,6 @@ export function useFormData(){
         const [horasTrabalhadas, setHorasTrabalhadas] = useState('');
          
         const objectGetters = {
-            emailMotorista,
             dateIni,
             dateFim,
             obs,
@@ -70,7 +69,6 @@ export function useFormData(){
         }
     
         const objectSetters = {
-            setEmailMotorista,
             setDateIni,
             setDateFim,
             setObs,
@@ -96,7 +94,8 @@ export function useFormData(){
             setOutrosAtribuicao,
             setOutrosSetor,
             setAlimentacao,
-            setArrayAlimentacao
+            setArrayAlimentacao,
+            setEmailMotorista
         }
 
         const handleSave = async () => {
@@ -107,7 +106,7 @@ export function useFormData(){
             await loadData(objectSetters);
         }
 
-        const enviarDados = async () => {
+        const enviarDados = async () => { 
 
             const q = query(collection(db, "users"), where("email", "==", emailMotorista));
             const querySnapShot = await getDocs(q);

@@ -6,7 +6,7 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { colors } from '../assets/styles/colors';
 import { auth } from '../config/firebaseconfig';
-import { useFormData } from '../utils/useForm';
+import { useFormData } from '../Hooks/useForm';
 
 import {
     Alimentacao,

@@ -1,30 +1,23 @@
 import { FontAwesome } from '@expo/vector-icons';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { colors } from '../assets/styles/colors';
+import useBuscas from '../Hooks/useBuscas';
 
 export default function Placa({state, setState}){
 
     const [exibir, setExibir] = useState(false);
+    const [placas, setPlacas] = useState([])
 
-    const placas = [
-        {
-            placa: 'Placa 1',
-            valorKm: 54.00
-        },
-        { 
-            placa: 'Placa 2',
-            valorKm: 75.00 
-        },
-        { 
-            placa: 'Placa 3',
-            valorKm: 12.00 
-        },
-        { 
-            placa: 'Placa 4',
-            valorKm: 35.00 
-        },
-    ]
+    const { buscaPlacas } = useBuscas();
+
+    useEffect(() => {
+        const busca = async () => {
+            const arrayPlacas = await buscaPlacas();
+            setPlacas(arrayPlacas);
+        }
+        busca();
+    }, [])
 
     function selectPlaca(item, index){
         setState(item.placa);
