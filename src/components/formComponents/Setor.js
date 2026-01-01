@@ -1,23 +1,33 @@
+import { useEffect, useState } from 'react';
+import useSetor from '../../Hooks/useSetor';
 import SelectOptions from "../SelectOptions";
 
 export default function Setor({state, setState, setOutros}){
 
-    const Setor = [
-        {nome: "Figurino"},
-        {nome: "Produção"},
-        {nome: "Cliente"},
-        {nome: "Objeto"},
-        {nome: "Câmera"},
-        {nome: "Maquinaria"},
-        {nome: "Eletrica"},
-        {nome: "Arte"},
-        {nome: "Outros"},
-    ]
+    const { buscaSetores } = useSetor();
+    const [setores, setSetores] = useState([])
 
+    useEffect(() => {
+        const busca = async () => {
+            const arraySetores = await buscaSetores();
+            const arrayObjects = arrayToArrayObjects(arraySetores);
+            setSetores(arrayObjects);
+        }
+        busca();
+    }, [])
+
+    function arrayToArrayObjects(array){
+        const arrayObjects = array.map((item) => {
+            return {
+                nome: item
+            }
+        })
+        return arrayObjects;
+    }
 
     return(
         <SelectOptions
-            object={Setor}
+            object={setores}
             nameSelect={"nome"}
             state={state}
             setState={setState}

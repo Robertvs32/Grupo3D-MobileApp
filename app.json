@@ -4,7 +4,7 @@
     "slug": "grupo3d",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/logo.png",
     "scheme": "grupo3d",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,

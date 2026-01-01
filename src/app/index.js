@@ -8,7 +8,7 @@ import useLogin from '../Hooks/useLogin';
 export default function index() {
 
   const router = useRouter();
-  const { login, setUsuario, setSenha } = useLogin();
+  const { login, setEmail, setSenha } = useLogin();
 
   return (
     <View style={styles.container}>
@@ -28,9 +28,9 @@ export default function index() {
 
         <TextInput
           style={styles.input}
-          placeholder="Usuario"
+          placeholder="Email"
           placeholderTextColor="white"
-          onChangeText={textUsuario => setUsuario(textUsuario)}
+          onChangeText={textUsuario => setEmail(textUsuario)}
         />
       </View>
 

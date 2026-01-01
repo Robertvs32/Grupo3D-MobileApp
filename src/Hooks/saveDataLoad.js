@@ -25,6 +25,7 @@ import { Alert } from 'react-native';
                 const loadedData = JSON.parse(jsonValue)
                 
                 setters.setDateIni(new Date(loadedData.dateIni))
+                setters.setForaPerimetro(loadedData.foraPerimetro)
                 setters.setDateFim(new Date(loadedData.dateFim))
                 setters.setObs(loadedData.obs)
                 setters.setEstacionamento(loadedData.estacionamento)

@@ -36,7 +36,7 @@ import InputCheckBox from '../InputCheckBox';
         function changeRef(text, id, campo){
             const arrayAtualizado = array.map(item => {
                 if(item.id == id){
-                    return { ...item, [campo]: text };
+                    return { ...item, [campo]: text.replace(',', '.') };
                 }
                 else {
                     return item;

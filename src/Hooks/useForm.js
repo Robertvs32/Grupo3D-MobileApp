@@ -4,8 +4,9 @@ import { Alert } from 'react-native';
 import { db } from '../config/firebaseconfig';
 import { loadData, saveData } from './saveDataLoad';
 
-export function useFormData(){
+export function useForm(){
 
+        const [foraPerimetro, setForaPerimetro] = useState('')
         const [emailMotorista, setEmailMotorista] = useState(''); 
         const [dateIni, setDateIni] = useState(new Date);
         const [dateFim, setDateFim] = useState(new Date);
@@ -40,6 +41,7 @@ export function useFormData(){
         const [horasTrabalhadas, setHorasTrabalhadas] = useState('');
          
         const objectGetters = {
+            foraPerimetro,
             dateIni,
             dateFim,
             obs,
@@ -69,6 +71,7 @@ export function useFormData(){
         }
     
         const objectSetters = {
+            setForaPerimetro,
             setDateIni,
             setDateFim,
             setObs,
@@ -155,12 +158,14 @@ export function useFormData(){
                 pagamento,
                 horasTrabalhadas,
                 dateIni,
+                dateFim,
+                foraPerimetro,
+                kmRodado: (kmFim - kmIni),
                 dateTimeIni,
                 dateTimeFim
             }
 
             try{
-
                 const docRef = await addDoc(collection(db, "relatorios"), valores);
 
                 Alert.alert("Sucesso!","Relatório enviado! ID do documento: " + docRef.id);

@@ -5,6 +5,7 @@ export { default as BtnVoltar } from '../components/formComponents/BtnVoltar';
 export { default as DataFim } from '../components/formComponents/DataFim';
 export { default as DataInicio } from '../components/formComponents/DataInicio';
 export { default as Estacionamento } from '../components/formComponents/Estacionamento';
+export { default as ForaPerimetro } from '../components/formComponents/ForaPerimetro';
 export { default as HoraFim } from '../components/formComponents/HoraFim';
 export { default as HoraInicio } from '../components/formComponents/HoraInicio';
 export { default as Inversor } from '../components/formComponents/Inversor';
@@ -21,3 +22,4 @@ export { default as ProdutorPessoa } from '../components/formComponents/Produtor
 export { default as Setor } from '../components/formComponents/Setor';
 export { default as ZonaAzul } from '../components/formComponents/zonaAzul';
 export { default as PlacaCarro } from '../components/Placa';
+

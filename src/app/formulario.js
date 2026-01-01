@@ -6,7 +6,7 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { colors } from '../assets/styles/colors';
 import { auth } from '../config/firebaseconfig';
-import { useFormData } from '../Hooks/useForm';
+import { useForm } from '../Hooks/useForm';
 
 import {
     Alimentacao,
@@ -16,6 +16,7 @@ import {
     DataFim,
     DataInicio,
     Estacionamento,
+    ForaPerimetro,
     HoraFim,
     HoraInicio,
     Inversor,
@@ -41,7 +42,7 @@ export default function formulario(){
     const [showModalBack, setShowModalBack] = useState(false);
     const [showModalForm, setShowModalForm] = useState(false);
 
-    const form = useFormData();
+    const form = useForm();
 
     useEffect(() => {
         if(shouldLoadData == 'true'){
@@ -53,14 +54,14 @@ export default function formulario(){
             form.setDateIni(tempDate);
             form.setDateFim(tempDate);
         }
-    }, [])
+    }, []); 
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, user => {
             form.setEmailMotorista(user.email);
         }); 
         return unsubscribe;
-    })
+    }, []);
 
     return(
         <SafeAreaView style={styles.containerSafeView}>
@@ -161,7 +162,11 @@ export default function formulario(){
                         setQtdZonaAzul={form.setQtdZonaAzul}
                         valorZonaAzul={form.valorZonaAzul}
                         setValorZonaAzul={form.setValorZonaAzul}
+                    />
 
+                    <ForaPerimetro
+                        foraPerimetro={form.foraPerimetro}
+                        setForaPerimetro={form.setForaPerimetro}
                     />
 
                     <Alimentacao
@@ -182,6 +187,7 @@ export default function formulario(){
                         setEstacionamento={form.setEstacionamento}
                         setValorEstacionamento={form.setValorEstacionamento}
                     />
+
                     <Obs
                         obs={form.obs}
                         setObs={form.setObs}
