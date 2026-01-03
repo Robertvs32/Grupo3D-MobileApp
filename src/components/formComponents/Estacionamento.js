@@ -1,4 +1,5 @@
 import { StyleSheet, View } from 'react-native';
+import iconEstacionamento from '../../assets/icons/estacionamento.png';
 import InputCheckBox from '../InputCheckBox';
 import InputComponent from '../InputComponent';
 
@@ -9,7 +10,7 @@ export default function Estacionamento({estacionamento, setEstacionamento, valor
                 txtInput="Estacionamento"
                 btnState={estacionamento}
                 setbtnState={setEstacionamento}
-                iconName="car"
+                source={iconEstacionamento}
                 size={18}
             />
         

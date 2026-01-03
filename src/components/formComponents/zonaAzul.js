@@ -1,4 +1,5 @@
 import { StyleSheet, View } from "react-native";
+import iconZonaAzul from '../../assets/icons/zonaAzul.png';
 import InputCheckBox from "../InputCheckBox";
 import InputComponent from "../InputComponent";
 
@@ -11,7 +12,7 @@ export default function ZonaAzul({zonaAzul, setZonaAzul, valorZonaAzul, setValor
                 txtInput="Zona azul"
                 btnState={zonaAzul}
                 setbtnState={setZonaAzul}
-                iconName="user"
+                source={iconZonaAzul}
                 size={20}
             />
 

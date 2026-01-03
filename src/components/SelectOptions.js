@@ -1,4 +1,3 @@
-import { FontAwesome } from '@expo/vector-icons';
 import { useState } from 'react';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { colors } from '../assets/styles/colors';
@@ -15,12 +14,6 @@ export default function SelectOptions({object, nameSelect ,state, setState, txtC
     return(
         <View style={styles.container}>
             <View style={styles.iconTxt}>
-                <FontAwesome
-                    name="user"
-                    size={19}
-                    color="rgba(255, 255, 255, 1)"
-                />
-
                 <Text style={styles.txtIcon}>{txtContainer}</Text>
             </View>
 
@@ -83,6 +76,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginBottom: 6,
         marginTop: 5
+    },
+    icon: {
+        width: '28px'
     },
     btnSetValue:{
         backgroundColor: 'white',

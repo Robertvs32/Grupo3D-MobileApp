@@ -1,7 +1,8 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { colors } from '../assets/styles/colors';
+import Icon from "./Icon";
 
-export default function InputCheckBox({txtInput, btnState, setbtnState, img}){
+export default function InputCheckBox({txtInput, btnState, setbtnState, source}){
 
     function pressYes(){
         setbtnState(true)
@@ -13,12 +14,9 @@ export default function InputCheckBox({txtInput, btnState, setbtnState, img}){
 
     return(
         <View style={styles.container}>
-
-            <Image
-                style={styles.img}
-                source={img}
+            <Icon
+                source={source}
             />
-
 
             <Text style={styles.txtInput}>{txtInput}</Text>
 

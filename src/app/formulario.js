@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { colors } from '../assets/styles/colors';
+import Loader from '../components/Loader';
 import { auth } from '../config/firebaseconfig';
 import { useForm } from '../Hooks/useForm';
 
@@ -38,6 +39,7 @@ import {
 export default function formulario(){
 
     const { loadData: shouldLoadData } = useLocalSearchParams();
+    const [loading, setLoading] = useState(false);
 
     const [showModalBack, setShowModalBack] = useState(false);
     const [showModalForm, setShowModalForm] = useState(false);
@@ -217,8 +219,17 @@ export default function formulario(){
             <ModalForm
                 visible={showModalForm}
                 setShowModal={setShowModalForm}
-                funcaoEnviar={form.enviarDados}
+                funcaoEnviar={async () => {
+                    setLoading(true);
+                    await form.enviarDados();
+                    setLoading(false);
+
+                }}
             />
+
+            {loading && (
+                <Loader/>
+            )}
 
         </SafeAreaView>
         

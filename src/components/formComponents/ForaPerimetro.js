@@ -1,3 +1,4 @@
+import iconViagem from '../../assets/icons/distancia.png';
 import InputCheckBox from "../InputCheckBox";
 
 export default function ForaPerimetro({foraPerimetro, setForaPerimetro}){
@@ -6,7 +7,7 @@ export default function ForaPerimetro({foraPerimetro, setForaPerimetro}){
             txtInput="Fora do perimetro"
             btnState={foraPerimetro}
             setbtnState={setForaPerimetro}
-            iconName="bolt"
+            source={iconViagem}
             size={20}
         />
     );

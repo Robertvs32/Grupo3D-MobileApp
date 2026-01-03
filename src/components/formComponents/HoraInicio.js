@@ -1,8 +1,9 @@
-import { FontAwesome } from '@expo/vector-icons';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useState } from 'react';
 import { Alert, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import iconRelogio from '../../assets/icons/relogio.png';
 import { colors } from '../../assets/styles/colors';
+import Icon from '../Icon';
 
     export default function HoraInicio({timeIni, setTimeIni, dateIni, dateFim, timeFim}){
 
@@ -39,10 +40,8 @@ import { colors } from '../../assets/styles/colors';
             <View style={styles.container}>
 
                 <View style={styles.logoTxt}>
-                    <FontAwesome
-                    name="user"
-                    size={19}
-                    color="rgba(255, 255, 255, 1)"
+                    <Icon
+                        source={iconRelogio}
                     />
                 
                     <Text style={styles.txt}>Hora início</Text>

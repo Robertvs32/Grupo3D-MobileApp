@@ -1,8 +1,9 @@
-import { FontAwesome } from '@expo/vector-icons';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useState } from 'react';
 import { Alert, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import iconCalendario from '../../assets/icons/calendario.png';
 import { colors } from '../../assets/styles/colors';
+import Icon from '../Icon';
 
     export default function DataFim({dateFim, setDateFim, dateIni}){
 
@@ -36,10 +37,8 @@ import { colors } from '../../assets/styles/colors';
             <View style={styles.container}>
 
                 <View style={styles.logoTxt}>
-                    <FontAwesome
-                    name="user"
-                    size={19}
-                    color="rgba(255, 255, 255, 1)"
+                    <Icon
+                        source={iconCalendario}
                     />
                 
                     <Text style={styles.txt}>Data Final</Text>

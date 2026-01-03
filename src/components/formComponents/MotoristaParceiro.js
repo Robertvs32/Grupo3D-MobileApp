@@ -1,3 +1,4 @@
+import iconMotorista from '../../assets/icons/motorista.png';
 import InputCheckBox from "../InputCheckBox";
 
 export default function MotoristaParceiro({parceiro, setParceiro}){
@@ -7,7 +8,7 @@ export default function MotoristaParceiro({parceiro, setParceiro}){
             txtInput="Motorista parceiro"
             btnState={parceiro}
             setbtnState={setParceiro}
-            iconName="user"
+            source={iconMotorista}
             size={20}
         />
     );

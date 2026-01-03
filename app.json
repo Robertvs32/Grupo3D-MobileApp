@@ -1,43 +1,51 @@
 {
   "expo": {
-    "name": "grupo3d",
+    "name": "Grupo 3D",
     "slug": "grupo3d",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/logo.png",
+    "icon": "./src/assets/logo/logoFundoBranco.png",
     "scheme": "grupo3d",
-    "userInterfaceStyle": "automatic",
+    "userInterfaceStyle": "dark",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.grupo3d.app"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/logo.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./src/assets/logo/logoFundoTransparente.png",
+        "backgroundColor": "#000000"
       },
+      "package": "com.grupo3d.app",
       "edgeToEdgeEnabled": true,
       "softwareKeyboardLayoutMode": "pan"
     },
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./src/assets/logo/logoFundoBranco.png"
     },
     "plugins": [
       "expo-router",
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
+          "image": "./src/assets/logo/logoFundoTransparente.png",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
+          "backgroundColor": "#000000"
         }
       ]
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "61c7582c-90dc-422e-8b26-9a52dd8b7959"
+      }
     }
   }
 }

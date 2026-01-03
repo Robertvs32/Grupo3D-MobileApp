@@ -1,4 +1,5 @@
 import { StyleSheet, View } from 'react-native';
+import iconPedagio from '../../assets/icons/pedagio.png';
 import InputCheckBox from "../InputCheckBox";
 import InputComponent from "../InputComponent";
 
@@ -9,7 +10,7 @@ export default function Pedagio({ pedagio, setPedagio, parceiro, valorPedagioPar
                 txtInput="Pedágio"
                 btnState={pedagio}
                 setbtnState={setPedagio}
-                iconName="road"
+                source={iconPedagio}
                 size={20}
             />
         

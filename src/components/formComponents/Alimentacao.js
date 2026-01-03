@@ -56,7 +56,7 @@ import InputCheckBox from '../InputCheckBox';
                     txtInput="Alimentação"
                     btnState={state}
                     setbtnState={setState}
-                    img={IconAlimentacao}
+                    source={IconAlimentacao}
                     size={19}
                 />
 

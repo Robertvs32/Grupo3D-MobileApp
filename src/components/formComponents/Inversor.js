@@ -1,3 +1,4 @@
+import iconInversor from '../../assets/icons/eletricidade.png';
 import InputCheckBox from "../InputCheckBox";
 
 export default function Inversor({inversor, setInversor}){
@@ -6,7 +7,7 @@ export default function Inversor({inversor, setInversor}){
             txtInput="Inversor"
             btnState={inversor}
             setbtnState={setInversor}
-            iconName="bolt"
+            source={iconInversor}
             size={20}
         />
     );
