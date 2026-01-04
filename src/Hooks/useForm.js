@@ -38,7 +38,6 @@ export function useForm(){
         ]);
         const verificado = false;
         const pagamento = "Pendente";
-        const [horasTrabalhadas, setHorasTrabalhadas] = useState('');
          
         const objectGetters = {
             foraPerimetro,
@@ -125,8 +124,6 @@ export function useForm(){
             dateTimeFim.setFullYear(dateFim.getFullYear(), dateFim.getMonth(), dateFim.getDate());
             dateTimeFim.setHours(horaFim.getHours(), horaFim.getMinutes(), 0, 0);
 
-            setHorasTrabalhadas(dateTimeFim - dateTimeIni);
-
             const valores = {
                 motorista,
                 obs,
@@ -156,7 +153,7 @@ export function useForm(){
                 })),}),
                 verificado,
                 pagamento,
-                horasTrabalhadas,
+                horasTrabalhadas: dateTimeFim - dateTimeIni,
                 dateIni,
                 dateFim,
                 foraPerimetro,
