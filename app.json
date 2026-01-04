@@ -15,7 +15,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/logo/logoFundoTransparente.png",
-        "backgroundColor": "#000000"
+        "backgroundColor": "#ffffff"
       },
       "package": "com.grupo3d.app",
       "edgeToEdgeEnabled": true,
@@ -34,7 +34,7 @@
           "image": "./src/assets/logo/logoFundoTransparente.png",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#000000"
+          "backgroundColor": "#ffffff"
         }
       ]
     ],
