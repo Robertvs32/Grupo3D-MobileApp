@@ -55,6 +55,7 @@ import Icon from '../Icon';
                 {showPicker && (
                     <View style={styles.containerDateTimePicker}>
                         <DateTimePicker
+                            accentColor="rgba(255, 255, 255, 1)"
                             display={Platform.OS === 'ios' ? 'inline' : 'default'}
                             mode="date"
                             value={dateFim}
